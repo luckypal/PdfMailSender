@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link
+    href="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/css/jquery.signaturepad.css"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="index.css" />
+  <title>Pdf Mail Sender</title>
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <form class="needs-validation" novalidate>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="http://www.pngall.com/wp-content/uploads/2/Email-PNG-Photo.png" alt=""
+          width="72" height="72">
+        <h2>Ihre Angaben</h2>
+        <p class="lead">Please fill below fields</p>
+      </div>
+      <div class="row">
+        <div class="col-md-12 order-md-1">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="Prename">Vorname</label>
+              <input type="text" class="form-control" name="Prename" id="Prename" placeholder="" value="">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="Surname">Name</label>
+              <input type="text" class="form-control" name="Surname" id="Surname" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="adress">Adresse</label>
+              <input type="text" class="form-control" name="adress" id="adress" placeholder="" value="">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="phone">Telefon</label>
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="" value="">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="customer_mail">E-Mail</label>
+              <input type="text" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value=""
+                required>
+              <div class="invalid-feedback">
+                E-Mail is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="notes">Bemerkung</label>
+              <textarea type="text" class="form-control" name="notes" id="notes" placeholder="" value=""></textarea>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+
+        <div class="col-md-12 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            was nehmen wir von Ihnen mit
+          </h4>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="mitnahme">Grund der Mitnahme</label>
+              <input type="text" class="form-control" name="mitnahme" id="mitnahme" placeholder="" value="">
+            </div>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="desktop" id="desktop">
+            <label class="custom-control-label" for="desktop">Desktop-Computer</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="laptop" id="laptop">
+            <label class="custom-control-label" for="laptop">Laptop</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="tablet" id="tablet">
+            <label class="custom-control-label" for="tablet">Tablet</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="smartphone" id="smartphone">
+            <label class="custom-control-label" for="smartphone">Smartphone</label>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="marke">Marke / Modell</label>
+              <input type="text" class="form-control" name="marke" id="marke" placeholder="" value="">
+            </div>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="netzteil" id="netzteil">
+            <label class="custom-control-label" for="netzteil">Netzteil</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="tastatur" id="tastatur">
+            <label class="custom-control-label" for="tastatur">Tastatur</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="maus" id="maus">
+            <label class="custom-control-label" for="maus">Maus</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="bildschirm" id="bildschirm">
+            <label class="custom-control-label" for="bildschirm">Bildschirm</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="festplatte" id="festplatte">
+            <label class="custom-control-label" for="festplatte">Externe Festplatte</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="usbstick" id="usbstick">
+            <label class="custom-control-label" for="usbstick">CD / USB-Stick</label>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="sonstiges">Sonstiges</label>
+              <input type="text" class="form-control" name="sonstiges" id="sonstiges" placeholder="" value="">
+            </div>
+          </div>
+          <hr />
+        </div>
+
+        <div class="col-md-12 order-md-2 mb-4 text-center">
+          <h4 class="mb-3">
+            Ihre Unterschrift
+          </h4>
+
+          <div id="signArea">
+            <div class="sigWrapper">
+              <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
+            </div>
+          </div>
+
+          <hr>
+          <div class="col-md-4 offset-md-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+          </div>
+        </div>
+    </form>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <script
+    src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/numeric-1.2.6.min.js"></script>
+  <script
+    src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/bezier.js"></script>
+  <script
+    src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/jquery.signaturepad.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#signArea').signaturePad({ drawOnly: true, drawBezierCurves: true, lineTop: 90 });
+    });
+  </script>
+</body>
+
+</html>
