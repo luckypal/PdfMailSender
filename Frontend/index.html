@@ -20,7 +20,7 @@
 
 <body class="bg-light">
   <div class="container">
-    <form class="needs-validation" novalidate>
+    <form class="needs-validation" novalidate action="index.php" method="post" enctype="multipart/form-data">
       <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="http://www.pngall.com/wp-content/uploads/2/Email-PNG-Photo.png" alt=""
           width="72" height="72">
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="customer_mail">E-Mail</label>
-              <input type="text" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value=""
+              <input type="email" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value=""
                 required>
               <div class="invalid-feedback">
                 E-Mail is required.
@@ -148,13 +148,23 @@
 
           <div id="signArea">
             <div class="sigWrapper">
+              <div class="typed"></div>
               <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
             </div>
           </div>
 
           <hr>
+
+          <p class="text-muted">
+            computerservice24.ch ist eine Marke der Firma Vital Media Design.
+            Wir garantieren Ihnen höchste Sorgfalt, bestmögliche Sicherheit, Diskretion und Verschwiegenheit im Umgang
+            mit Ihren Daten.
+            Die kompletten Allgemeinen Geschäftsbedingungen sind dem Bestätigungsmail, welches im Anschluss an Sie
+            verschickt wird, angehängt.
+            Mit Ihrer Unterschrift akzeptieren Sie unsere AGBs.
+          </p>
           <div class="col-md-4 offset-md-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnSubmit">Submit</button>
           </div>
         </div>
     </form>
@@ -177,10 +187,37 @@
     src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/bezier.js"></script>
   <script
     src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/jquery.signaturepad.js"></script>
+
+  <script type='text/javascript'
+    src="https://github.com/niklasvh/html2canvas/releases/download/0.4.1/html2canvas.js"></script>
+  <script
+    src="http://learninfinity.info/demo/digital-e-signature-pad-with-saving-it-as-image-using-html2canvas-and-ajax-php/js/json2.min.js"></script>
+
   <script>
     $(document).ready(function () {
       $('#signArea').signaturePad({ drawOnly: true, drawBezierCurves: true, lineTop: 90 });
     });
+
+    (function () {
+      'use strict';
+
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            alert("asdf");
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
   </script>
 </body>
 

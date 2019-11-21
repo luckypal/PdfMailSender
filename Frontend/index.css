@@ -2,3 +2,8 @@
   height: auto;
   display: inline-block;
 }
+
+#signArea>.error {
+  background-color: #dc3545;
+  border-radius: 5px;
+}
