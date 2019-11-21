@@ -140,7 +140,7 @@ try {
 
   //Recipients
   $mail->setFrom('', 'Mailer');
-  $mail->addAddress('', 'Lucky Pal');     // Add a recipient
+  $mail->addAddress($customer_mail, $surname);     // Add a recipient
   // $mail->addAddress('ellen@example.com');               // Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
   // $mail->addCC('cc@example.com');
