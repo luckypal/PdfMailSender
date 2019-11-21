@@ -32,11 +32,11 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="Prename">Vorname</label>
-              <input type="text" class="form-control" name="Prename" id="Prename" placeholder="" value="">
+              <input type="text" class="form-control" name="prename" id="Prename" placeholder="" value="">
             </div>
             <div class="col-md-6 mb-3">
               <label for="Surname">Name</label>
-              <input type="text" class="form-control" name="Surname" id="Surname" placeholder="" value="" required>
+              <input type="text" class="form-control" name="surname" id="Surname" placeholder="" value="testname" required>
               <div class="invalid-feedback">
                 Name is required.
               </div>
@@ -57,8 +57,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="customer_mail">E-Mail</label>
-              <input type="email" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value=""
-                required>
+              <input type="email" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value="test@a.com" required>
               <div class="invalid-feedback">
                 E-Mail is required.
               </div>
@@ -152,6 +151,7 @@
               <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
             </div>
           </div>
+          <input type="hidden" name="canvas_img_data" id="canvas_img_data">
 
           <hr>
 
@@ -199,21 +199,26 @@
     });
 
     (function () {
-      'use strict';
+      // 'use strict';
 
-      window.addEventListener('load', function () {
+      window.addEventListener('load', () => {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
 
         // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-          form.addEventListener('submit', function (event) {
-            alert("asdf");
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
+        var validation = Array.prototype.filter.call(forms, (form) => {
+          form.addEventListener('submit', (event) => {
+            if (form.checkValidity() === true) {
+              html2canvas([document.getElementById('sign-pad')], {
+                onrendered: (canvas) => {
+                  var canvas_img_data = canvas.toDataURL('image/png');
+                  $("#canvas_img_data").val(canvas_img_data);
+                  form.submit();
+                }
+              });
             }
-            form.classList.add('was-validated');
+            event.preventDefault();
+            event.stopPropagation();
           }, false);
         });
       }, false);
