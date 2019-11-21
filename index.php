@@ -1,5 +1,11 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
 /**
  * Post form data
  * **************
@@ -33,7 +39,6 @@ if (!isset($inputData ["customer_mail"])) {
   return;
 }
 
-require 'vendor/Mail.php';
 
 $curDate = date("r");
 $prename = $inputData ["prename"];
@@ -118,24 +123,45 @@ Tel.: 062 552 00 24";
 
 $emailContent = str_replace('\n', '<br>', $emailContent);
 
-$result = mail("bigluckypal@gmail.com", "hello", $emailContent);
-var_dump($result);
+
+$mail = new PHPMailer(true);
+$mail->CharSet = "UTF-8";
+
+try {
+  //Server settings
+  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+  $mail->isSMTP();                                            // Send using SMTP
+  $mail->Host       = 'ssl://smtp.gmail.com';            // Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+  $mail->Username   = '';       // SMTP username
+  $mail->Password   = '';                     // SMTP password
+  // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+  $mail->Port       = 465;                                    // TCP port to connect to
+
+  //Recipients
+  $mail->setFrom('', 'Mailer');
+  $mail->addAddress('', 'Lucky Pal');     // Add a recipient
+  // $mail->addAddress('ellen@example.com');               // Name is optional
+  // $mail->addReplyTo('info@example.com', 'Information');
+  // $mail->addCC('cc@example.com');
+  // $mail->addBCC('bcc@example.com');
+
+  // Attachments
+  $mail->addAttachment('attachments/AGB_Vital_Media_Design.pdf');         // Add attachments
+  // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+  // Content
+  $mail->isHTML(true);                                  // Set email format to HTML
+  $mail->Subject = 'Computer Service 24';
+  $mail->Body    = $emailContent;
+  // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+  $mail->send();
+  echo 'Message has been sent';
+} catch (Exception $e) {
+  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
 return;
-
-
-// $params = array();
-// $mailer = Mail::factory('smtp', $params);
-// $e = $mailer->send("bigluckypal@gmail.com", array(
-//   "Subject" => "From Computer service 24",
-//   "Content-Type" => "text/html; charset=UTF-8\r\n"
-// ), $emailContent);
-
-// if (is_a($e, 'PEAR_Error')) {
-//   $err = $e->getMessage();
-//   print_r($err);
-//   if (preg_match('/Failed to connect to bogus.host.tld:25 \[SMTP: Failed to connect socket:.*/i', $err)) {
-//      echo "OK";
-//   }
-// }
 
 readfile("html/index.html");
