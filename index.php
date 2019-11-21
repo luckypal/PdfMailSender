@@ -33,6 +33,8 @@ if (!isset($inputData ["customer_mail"])) {
   return;
 }
 
+require 'vendor/Mail.php';
+
 $curDate = date("r");
 $prename = $inputData ["prename"];
 $surname = $inputData ["surname"];
@@ -116,7 +118,24 @@ Tel.: 062 552 00 24";
 
 $emailContent = str_replace('\n', '<br>', $emailContent);
 
+$result = mail("bigluckypal@gmail.com", "hello", $emailContent);
+var_dump($result);
+return;
 
-$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+// $params = array();
+// $mailer = Mail::factory('smtp', $params);
+// $e = $mailer->send("bigluckypal@gmail.com", array(
+//   "Subject" => "From Computer service 24",
+//   "Content-Type" => "text/html; charset=UTF-8\r\n"
+// ), $emailContent);
+
+// if (is_a($e, 'PEAR_Error')) {
+//   $err = $e->getMessage();
+//   print_r($err);
+//   if (preg_match('/Failed to connect to bogus.host.tld:25 \[SMTP: Failed to connect socket:.*/i', $err)) {
+//      echo "OK";
+//   }
+// }
 
 readfile("html/index.html");
