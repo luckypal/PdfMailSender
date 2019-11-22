@@ -133,13 +133,13 @@ try {
   $mail->isSMTP();                                            // Send using SMTP
   $mail->Host       = 'ssl://smtp.gmail.com';            // Set the SMTP server to send through
   $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-  $mail->Username   = '';       // SMTP username
-  $mail->Password   = '';                     // SMTP password
+  $mail->Username   = 'YourEmailAddress';       // SMTP username
+  $mail->Password   = 'YourEmailPassword';                     // SMTP password
   // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
   $mail->Port       = 465;                                    // TCP port to connect to
 
   //Recipients
-  $mail->setFrom('', 'Mailer');
+  $mail->setFrom('Computer Service 24', 'Mailer');
   $mail->addAddress($customer_mail, $surname);     // Add a recipient
   // $mail->addAddress('ellen@example.com');               // Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
