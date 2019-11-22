@@ -9,7 +9,7 @@ require 'vendor/autoload.php';
 /**
  * Post form data
  * **************
- * 
+ *
  * Text Boxes
  * prename
  * surname
@@ -18,16 +18,16 @@ require 'vendor/autoload.php';
  * customer_mail
  * notes
  * mitnahme
- * 
+ *
  * Check Boxes
  * desktop, laptop, tablet, smartphone
- * 
+ *
  * Text Box
  * marke
- * 
+ *
  * Check Boxes
  * netzteil, tastatur, maus, bildschirm, festplatte, usbstick
- * 
+ *
  * Text Box
  * sonstiges
  * canvas_img_data
@@ -81,8 +81,13 @@ foreach($deviceChecks as $device => $text) {
 $deviceList .= $inputData ["sonstiges"];
 
 //Make Signature image
+$imgName = time();
 $canvas_img_data = $inputData ["canvas_img_data"];
-$sigImageHtml = "<img src='$canvas_img_data}'/>";
+list(, $canvas_img_data) = explode(',', $canvas_img_data);
+$canvas_img_data = base64_decode($canvas_img_data);
+file_put_contents("signature/$imgName.png", $canvas_img_data);
+
+$sigImageHtml = "<img src='http://Your-Server-URL/signature/$imgName.png'/>";
 
 $emailContent = "Geschätzter Kunde <br>
 <br>
@@ -129,21 +134,21 @@ $mail->CharSet = "UTF-8";
 
 try {
   //Server settings
-  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-  $mail->isSMTP();                                            // Send using SMTP
-  $mail->Host       = 'ssl://smtp.gmail.com';            // Set the SMTP server to send through
+  //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+  $mail->isSMTP(true);                                            // Send using SMTP
+  $mail->Host       = 'mail.your-server.de';            // Set the SMTP server to send through
   $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-  $mail->Username   = 'YourEmailAddress';       // SMTP username
-  $mail->Password   = 'YourEmailPassword';                     // SMTP password
+  $mail->Username   = 'signature@computerservice24.ch';       // SMTP username
+  $mail->Password   = 'c77PGh3Ew81K5xJH';                     // SMTP password
   // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-  $mail->Port       = 465;                                    // TCP port to connect to
+  $mail->Port       = 587;                                    // TCP port to connect to
 
   //Recipients
-  $mail->setFrom('Computer Service 24', 'Mailer');
+  $mail->setFrom('help@computerservice24.ch', 'Computer Service 24');
   $mail->addAddress($customer_mail, $surname);     // Add a recipient
-  // $mail->addAddress('ellen@example.com');               // Name is optional
-  // $mail->addReplyTo('info@example.com', 'Information');
-  // $mail->addCC('cc@example.com');
+  $mail->addAddress('help@computerservice24.ch'); // Name is optional
+  // $mail->addReplyTo('help@computerservice24.ch', 'Computer Service 24');
+  // $mail->addCC('help@computerservice24.ch');
   // $mail->addBCC('bcc@example.com');
 
   // Attachments
@@ -157,7 +162,7 @@ try {
   // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
   $mail->send();
-  echo 'Message has been sent';
+  echo 'Vielen Dank. Alles in Ordnung.';
 } catch (Exception $e) {
   echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

@@ -13,17 +13,16 @@
   <link rel="stylesheet" href="css/jquery.signaturepad.css">
 
   <link rel="stylesheet" href="css/index.css" />
-  <title>Pdf Mail Sender</title>
+  <title>Mitnahmeprotokoll</title>
 </head>
 
 <body class="bg-light">
-  <div class="container">
+  <div class="container-fluid">
     <form class="needs-validation" novalidate action="index.php" method="post" enctype="multipart/form-data">
       <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="img/Email-PNG-Photo.png" alt=""
-          width="72" height="72">
+        <img class="d-block mx-auto mb-4 img-fluid" src="https://computerservice24.ch/wp-content/uploads/2019/11/computerservice24.png" alt="logo">
         <h2>Ihre Angaben</h2>
-        <p class="lead">Please fill below fields</p>
+        <p class="lead">Bitte füllen Sie das Formular aus.</p>
       </div>
       <div class="row">
         <div class="col-md-12 order-md-1">
@@ -36,7 +35,7 @@
               <label for="Surname">Name</label>
               <input type="text" class="form-control" name="surname" id="Surname" placeholder="" value="" required>
               <div class="invalid-feedback">
-                Name is required.
+                Name benötigt.
               </div>
             </div>
           </div>
@@ -58,7 +57,7 @@
               <input type="email" class="form-control" name="customer_mail" id="customer_mail" placeholder="" value=""
                 required>
               <div class="invalid-feedback">
-                E-Mail is required.
+                E-Mail benötigt.
               </div>
             </div>
           </div>
@@ -147,7 +146,7 @@
           <div id="signArea">
             <div class="sigWrapper">
               <div class="typed"></div>
-              <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
+              <canvas class="sign-pad" id="sign-pad" style="width:100; height:200" ></canvas>
             </div>
           </div>
           <input type="hidden" name="canvas_img_data" id="canvas_img_data">
@@ -163,7 +162,7 @@
             Mit Ihrer Unterschrift akzeptieren Sie unsere AGBs.
           </p>
           <div class="col-md-4 offset-md-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnSubmit">Submit</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="btnSubmit">Senden</button>
           </div>
         </div>
     </form>
@@ -188,7 +187,7 @@
 
   <script>
     $(document).ready(function () {
-      $('#signArea').signaturePad({ drawOnly: true, drawBezierCurves: true, lineTop: 90 });
+      $('#signArea').signaturePad({ drawOnly: true, drawBezierCurves: true, lineTop: 100});
     });
 
     (function () {
